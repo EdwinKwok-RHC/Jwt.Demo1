@@ -24,17 +24,19 @@ namespace Demo.Webapi.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
             var productCache = new List<Product>();
-            productCache = _cacheService.GetData<List<Product>>("Product");
-            if (productCache == null)
-            {
-                var product = await _context.Products.ToListAsync();
-                if (product.Count > 0)
-                {
-                    productCache = product;
-                    var expirationTime = DateTimeOffset.Now.AddMinutes(3.0);
-                    _cacheService.SetData("Product", productCache, expirationTime);
-                }
-            }
+            //productCache = _cacheService.GetData<List<Product>>("Product");
+            //if (productCache == null)
+            //{
+            //    var product = await _context.Products.ToListAsync();
+            //    if (product.Count > 0)
+            //    {
+            //        productCache = product;
+            //        var expirationTime = DateTimeOffset.Now.AddMinutes(3.0);
+            //        _cacheService.SetData("Product", productCache, expirationTime);
+            //    }
+            //}
+            productCache.Add(new Product { ProductId = 1, ProductDescription = "Item 1", ProductName = "Item 1", ProductCost = 100, ProductStock = 1 });
+
             return productCache;
         }
 

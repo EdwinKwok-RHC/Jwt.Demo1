@@ -21,6 +21,12 @@ namespace Demo.Webapi.Controllers
             }
             if (user.UserName == "Jaydeep" && user.Password == "Pass@777")
             {
+                ICollection<Claim> _claims = new Claim[] {
+                    new Claim(ClaimTypes.NameIdentifier, "001"),
+                    new Claim(ClaimTypes.Name,"Jaydeep"),
+                    new Claim(ClaimTypes.Role, "Admin"),
+                    //new Claim(ClaimTypes.UserData, currentIdentity.ToString())
+                };
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationManager.AppSetting["JWT:Secret"]));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokeOptions = new JwtSecurityToken(

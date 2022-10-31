@@ -12,7 +12,7 @@ namespace Demo.Webapi.Cache
         }
         private void ConfigureRedis()
         {
-            _db = ConnectionHelper.Connection.GetDatabase();
+            //_db = ConnectionHelper.Connection.GetDatabase();
         }
         public T GetData<T>(string key)
         {
